@@ -10,10 +10,10 @@ public class Tag01
 {
 	Scanner scanner = new Scanner(new FileReader("src/jahr2023/resources/Tag01.txt"));
 	int summe = 0;
-	String firstNumber = "";
-	String lastNumber = "";
-	String text;
-	List<String> numbers = Arrays.asList("one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
+	String ersteZiffer = "";
+	String letzteZiffer = "";
+	String aktuelleZeile;
+	List<String> ziffernAlsString = Arrays.asList("one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
 
 	public Tag01() throws FileNotFoundException
 	{
@@ -29,21 +29,21 @@ public class Tag01
 	{
 		while (scanner.hasNext())
 		{
-			text = scanner.nextLine();
-			for (int i = 0; i < text.length(); i++)
+			aktuelleZeile = scanner.nextLine();
+			for (int i = 0; i < aktuelleZeile.length(); i++)
 			{
-				if (Character.isDigit(text.charAt(i)))
+				if (Character.isDigit(aktuelleZeile.charAt(i)))
 				{
-					if (firstNumber.isEmpty())
+					if (ersteZiffer.isEmpty())
 					{
-						firstNumber = String.valueOf(text.charAt(i));
+						ersteZiffer = String.valueOf(aktuelleZeile.charAt(i));
 					}
-					lastNumber = String.valueOf(text.charAt(i));
+					letzteZiffer = String.valueOf(aktuelleZeile.charAt(i));
 				}
 			}
-			summe += Integer.parseInt(firstNumber + lastNumber);
-			firstNumber = "";
-			lastNumber = "";
+			summe += Integer.parseInt(ersteZiffer + letzteZiffer);
+			ersteZiffer = "";
+			letzteZiffer = "";
 		}
 		System.out.println("Summe 1: " + summe);
 	}
@@ -52,57 +52,57 @@ public class Tag01
 	{
 		while (scanner.hasNext())
 		{
-			text = scanner.nextLine();
-			for (int i = 0; i < text.length(); i++)
+			aktuelleZeile = scanner.nextLine();
+			for (int i = 0; i < aktuelleZeile.length(); i++)
 			{
-				if (Character.isDigit(text.charAt(i)))
+				if (Character.isDigit(aktuelleZeile.charAt(i)))
 				{
-					fuegeZahlHinzu(Integer.parseInt(text.charAt(i) + ""));
+					fuegeZahlHinzu(Integer.parseInt(aktuelleZeile.charAt(i) + ""));
 				}
 				else
 					if (i >= 2)
 					{
-						if (numbers.contains("" + text.charAt(i - 2) + text.charAt(i - 1) + text.charAt(i)))
+						if (ziffernAlsString.contains("" + aktuelleZeile.charAt(i - 2) + aktuelleZeile.charAt(i - 1) + aktuelleZeile.charAt(i)))
 						{
 							fuegeZahlHinzu(
-								numbers.indexOf("" + text.charAt(i - 2) + text.charAt(i - 1) + text.charAt(i)) + 1);
+								ziffernAlsString.indexOf("" + aktuelleZeile.charAt(i - 2) + aktuelleZeile.charAt(i - 1) + aktuelleZeile.charAt(i)) + 1);
 						}
 					}
 				if (i >= 3)
 				{
-					if (numbers.contains(
-						"" + text.charAt(i - 3) + text.charAt(i - 2) + text.charAt(i - 1) + text.charAt(i)))
+					if (ziffernAlsString.contains(
+						"" + aktuelleZeile.charAt(i - 3) + aktuelleZeile.charAt(i - 2) + aktuelleZeile.charAt(i - 1) + aktuelleZeile.charAt(i)))
 					{
-						fuegeZahlHinzu(numbers.indexOf(
-							"" + text.charAt(i - 3) + text.charAt(i - 2) + text.charAt(i - 1) + text.charAt(i)) + 1);
+						fuegeZahlHinzu(ziffernAlsString.indexOf(
+							"" + aktuelleZeile.charAt(i - 3) + aktuelleZeile.charAt(i - 2) + aktuelleZeile.charAt(i - 1) + aktuelleZeile.charAt(i)) + 1);
 
 					}
 				}
 				if (i >= 4)
 				{
-					if (numbers.contains(
-						"" + text.charAt(i - 4) + text.charAt(i - 3) + text.charAt(i - 2) + text.charAt(i - 1)
-							+ text.charAt(i)))
+					if (ziffernAlsString.contains(
+						"" + aktuelleZeile.charAt(i - 4) + aktuelleZeile.charAt(i - 3) + aktuelleZeile.charAt(i - 2) + aktuelleZeile.charAt(i - 1)
+							+ aktuelleZeile.charAt(i)))
 					{
-						fuegeZahlHinzu(numbers.indexOf(
-							"" + text.charAt(i - 4) + text.charAt(i - 3) + text.charAt(i - 2) + text.charAt(i - 1)
-								+ text.charAt(i)) + 1);
+						fuegeZahlHinzu(ziffernAlsString.indexOf(
+							"" + aktuelleZeile.charAt(i - 4) + aktuelleZeile.charAt(i - 3) + aktuelleZeile.charAt(i - 2) + aktuelleZeile.charAt(i - 1)
+								+ aktuelleZeile.charAt(i)) + 1);
 					}
 				}
 			}
-			summe += Integer.parseInt(firstNumber + lastNumber);
-			firstNumber = "";
-			lastNumber = "";
+			summe += Integer.parseInt(ersteZiffer + letzteZiffer);
+			ersteZiffer = "";
+			letzteZiffer = "";
 		}
 		System.out.println("Summe 2: " + summe);
 	}
 
 	void fuegeZahlHinzu(int zahl)
 	{
-		if (firstNumber.isEmpty())
+		if (ersteZiffer.isEmpty())
 		{
-			firstNumber = String.valueOf(zahl);
+			ersteZiffer = String.valueOf(zahl);
 		}
-		lastNumber = String.valueOf(zahl);
+		letzteZiffer = String.valueOf(zahl);
 	}
 }
