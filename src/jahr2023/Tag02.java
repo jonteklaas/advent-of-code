@@ -23,7 +23,7 @@ public class Tag02
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		//new Tag02().berechneSumme1();
+		new Tag02().berechneSumme1();
 		new Tag02().berechneSumme2();
 	}
 
