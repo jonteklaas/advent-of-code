@@ -23,7 +23,8 @@ public class Tag02
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		new Tag02().berechneSumme1();
+		//new Tag02().berechneSumme1();
+		new Tag02().berechneSumme2();
 	}
 
 	void berechneSumme1()
@@ -60,6 +61,46 @@ public class Tag02
 				summe += id;
 			}
 			id++;
+			anzahlRoteWuerfel = 0;
+			anzahlGrueneWuerfel = 0;
+			anzahlBlaueWuerfel = 0;
+		}
+		System.out.println(summe);
+	}
+
+	void berechneSumme2()
+	{
+		while (scanner.hasNext())
+		{
+			aktuelleZeile = scanner.nextLine().split(":")[1].replace(" ", "").replace(",", "").replace(";", "");
+			aktuelleZeile = aktuelleZeile.replace("red", "r").replace("green", "g").replace("blue", "b");
+			while (!aktuelleZeile.isEmpty())
+			{
+				if (Character.isDigit(aktuelleZeile.charAt(1)))
+				{
+					stelleFarbe = 2;
+					anzahlWuerfel = Integer.parseInt(aktuelleZeile.charAt(0) + "" + aktuelleZeile.charAt(1));
+				}
+				else
+				{
+					stelleFarbe = 1;
+					anzahlWuerfel = Integer.parseInt(aktuelleZeile.charAt(0) + "");
+				}
+				switch (aktuelleZeile.charAt(stelleFarbe))
+				{
+					case 'r':
+						anzahlRoteWuerfel = Math.max(anzahlWuerfel, anzahlRoteWuerfel);
+						break;
+					case 'g':
+						anzahlGrueneWuerfel = Math.max(anzahlWuerfel, anzahlGrueneWuerfel);
+						break;
+					case 'b':
+						anzahlBlaueWuerfel = Math.max(anzahlWuerfel, anzahlBlaueWuerfel);
+						break;
+				}
+				aktuelleZeile = aktuelleZeile.substring(stelleFarbe + 1);
+			}
+			summe += anzahlRoteWuerfel * anzahlGrueneWuerfel * anzahlBlaueWuerfel;
 			anzahlRoteWuerfel = 0;
 			anzahlGrueneWuerfel = 0;
 			anzahlBlaueWuerfel = 0;
