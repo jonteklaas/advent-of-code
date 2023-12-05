@@ -87,4 +87,64 @@ public class Tag03
 		}
 		return false;
 	}
+
+	void berechneSumme2()
+	{
+		for (int i = 0; scanner.hasNext(); i++)
+		{
+			eingabe.add(scanner.nextLine());
+		}
+		for (int i = 0; i < eingabe.size(); i++)
+		{
+			aktuelleZeile = eingabe.get(i);
+			for (int j = 0; j < aktuelleZeile.length(); j++)
+			{
+				if (aktuelleZahl.isEmpty())
+				{
+					startIndex = j;
+				}
+				if (Character.isDigit(aktuelleZeile.charAt(j)))
+				{
+					aktuelleZahl += aktuelleZeile.charAt(j);
+				}
+				else
+					if (!aktuelleZahl.isEmpty())
+					{
+						if (i > 0)
+						{
+							istGueltig =
+								istZeichenVorhanden(eingabe.get(i - 1), startIndex, startIndex + aktuelleZahl.length());
+						}
+						if (i < eingabe.size() - 1 && !istGueltig)
+						{
+							istGueltig =
+								istZeichenVorhanden(eingabe.get(i + 1), startIndex, startIndex + aktuelleZahl.length());
+						}
+						if (!istGueltig)
+						{
+							istGueltig = istZeichenVorhanden(eingabe.get(i), startIndex, startIndex + aktuelleZahl.length());
+						}
+						if (istGueltig)
+						{
+							summe += Integer.parseInt(aktuelleZahl);
+						}
+						aktuelleZahl = "";
+						istGueltig = false;
+					}
+			}
+		}
+		System.out.println(summe);
+	}
+
+	boolean istAsteriskVorhanden(String zeile, int startIndex, int endIndex)
+	{
+		for (int i = startIndex - 1; i <= endIndex; i++)
+		{
+			if (i >= 0 && i < zeile.length() && zeile.charAt(i) == '*' && !Character.isDigit(zeile.charAt(i)))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }
