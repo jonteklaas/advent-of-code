@@ -11,6 +11,7 @@ public class Tag03
 	Scanner scanner = new Scanner(new FileReader("src/jahr2023/resources/Tag03.txt"));
 
 	List<String> eingabe = new ArrayList<>();
+
 	String aktuelleZeile;
 	String aktuelleZahl = "";
 
@@ -26,11 +27,12 @@ public class Tag03
 	public static void main(String[] args) throws FileNotFoundException
 	{
 		new Tag03().berechneSumme1();
+		new Tag03().berechneSumme2();
 	}
 
 	void berechneSumme1()
 	{
-		for (int i = 0; scanner.hasNext(); i++)
+		while (scanner.hasNext())
 		{
 			eingabe.add(scanner.nextLine());
 		}
@@ -62,7 +64,8 @@ public class Tag03
 						}
 						if (!istGueltig)
 						{
-							istGueltig = istZeichenVorhanden(eingabe.get(i), startIndex, startIndex + aktuelleZahl.length());
+							istGueltig =
+								istZeichenVorhanden(eingabe.get(i), startIndex, startIndex + aktuelleZahl.length());
 						}
 						if (istGueltig)
 						{
@@ -90,10 +93,6 @@ public class Tag03
 
 	void berechneSumme2()
 	{
-		for (int i = 0; scanner.hasNext(); i++)
-		{
-			eingabe.add(scanner.nextLine());
-		}
 		for (int i = 0; i < eingabe.size(); i++)
 		{
 			aktuelleZeile = eingabe.get(i);
@@ -112,8 +111,8 @@ public class Tag03
 					{
 						if (i > 0)
 						{
-							istGueltig =
-								istZeichenVorhanden(eingabe.get(i - 1), startIndex, startIndex + aktuelleZahl.length());
+							summe +=
+								Integer.parseInt(aktuelleZahl) * istAsteriskVorhanden(i, startIndex, startIndex + aktuelleZahl.length());
 						}
 						if (i < eingabe.size() - 1 && !istGueltig)
 						{
@@ -122,7 +121,8 @@ public class Tag03
 						}
 						if (!istGueltig)
 						{
-							istGueltig = istZeichenVorhanden(eingabe.get(i), startIndex, startIndex + aktuelleZahl.length());
+							istGueltig =
+								istZeichenVorhanden(eingabe.get(i), startIndex, startIndex + aktuelleZahl.length());
 						}
 						if (istGueltig)
 						{
@@ -136,15 +136,42 @@ public class Tag03
 		System.out.println(summe);
 	}
 
-	boolean istAsteriskVorhanden(String zeile, int startIndex, int endIndex)
+	// nur "unten rechts" checken
+	//  XYZ*
+	// *****
+	//
+
+	Integer istAsteriskVorhanden(int zeilenIndex, int startIndex, int endIndex)
 	{
-		for (int i = startIndex - 1; i <= endIndex; i++)
+		if (eingabe.get(zeilenIndex).charAt(endIndex + 1) == '*')
 		{
-			if (i >= 0 && i < zeile.length() && zeile.charAt(i) == '*' && !Character.isDigit(zeile.charAt(i)))
+			if(getWeitereZahl(zeilenIndex, endIndex + 1) != 0){
+				return getWeitereZahl(zeilenIndex, endIndex + 1);
+			} else {
+				for (int i = startIndex - 1; i <= endIndex; i++)
+				{
+					//if (i >= 0 && i < zeile.length() && zeile.charAt(i) == '*')
+					//{
+					//	return true;
+					//}
+				}
+			};
+		}
+		return 0;
+	}
+
+	Integer getWeitereZahl(int zeilenIndex, int asteriskIndex)
+	{
+		int i = asteriskIndex + 1;
+		String weitereZahl = "0";
+		if (Character.isDigit(eingabe.get(zeilenIndex).charAt(i)))
+		{
+			while (Character.isDigit(eingabe.get(zeilenIndex).charAt(i)))
 			{
-				return true;
+				weitereZahl += eingabe.get(zeilenIndex).charAt(i);
+				i++;
 			}
 		}
-		return false;
+		return Integer.parseInt(weitereZahl);
 	}
 }
