@@ -18,12 +18,16 @@ public class Tag04
 	String[] eigeneZahlenString;
 	List<Integer> eigeneZahlen = new ArrayList<>();
 
+	List<Integer> anzahlGewinnzahlen = new ArrayList<>();
+	List<Integer> anzahlGewinnkarten = new ArrayList<>();
+
 	public Tag04() throws FileNotFoundException
 	{}
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
 		new Tag04().berechneSumme1();
+		new Tag04().berechneSumme2();
 	}
 
 	void berechneSumme1()
@@ -36,6 +40,37 @@ public class Tag04
 			aktuelleZeile = scanner.nextLine();
 			erstelleZahlenListen();
 			summe += berechnePunktzahl(berechneAnzahlTreffer(gewinnZahlen, eigeneZahlen));
+		}
+		System.out.println(summe);
+	}
+
+	void berechneSumme2()
+	{
+		int summe = 0;
+		for (int i = 0; scanner.hasNext(); i++)
+		{
+			gewinnZahlen.clear();
+			eigeneZahlen.clear();
+			aktuelleZeile = scanner.nextLine();
+			erstelleZahlenListen();
+			anzahlGewinnzahlen.add(berechneAnzahlTreffer(gewinnZahlen, eigeneZahlen));
+		}
+
+		for (int i = 0; i < anzahlGewinnzahlen.size(); i++)
+		{
+			anzahlGewinnkarten.add(1);
+		}
+
+		for (int i = 0; i < anzahlGewinnzahlen.size(); i++)
+		{
+			for (int j = 1; j <= anzahlGewinnzahlen.get(i); j++)
+			{
+				if (i + j < anzahlGewinnkarten.size())
+				{
+					anzahlGewinnkarten.set(i + j, anzahlGewinnkarten.get(i + j) + anzahlGewinnkarten.get(i));
+				}
+			}
+			summe += anzahlGewinnkarten.get(i);
 		}
 		System.out.println(summe);
 	}
