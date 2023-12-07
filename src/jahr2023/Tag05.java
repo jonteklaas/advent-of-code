@@ -13,34 +13,28 @@ public class Tag05
 
 	List<String> eingabe = new ArrayList<>();
 	List<String> aktuelleMap = new ArrayList<>();
-	List<Long> samen = new ArrayList<>();
-
 	List<Long> werte = new ArrayList<>();
 
+	String[] samenliste;
+
 	public Tag05() throws FileNotFoundException
-	{}
-
-	public static void main(String[] args) throws FileNotFoundException
-	{
-		new Tag05().berechneSumme1();
-	}
-
-	void berechneSumme1()
 	{
 		while (scanner.hasNext())
 		{
 			eingabe.add(scanner.nextLine());
 		}
+		samenliste = eingabe.get(0).split(": ")[1].split(" ");
+	}
 
-		String samenliste = eingabe.get(0).split(": ")[1];
-		for (int i = 0; i < samenliste.split(" ").length; i++)
-		{
-			//samen.add(Long.valueOf(samenliste.split(" ")[i]));
-			werte.add(Long.valueOf(samenliste.split(" ")[i]));
-		}
+	public static void main(String[] args) throws FileNotFoundException
+	{
+		System.out.println("Ergebnis 1: " + new Tag05().loeseAufgabe1());
+		System.out.println("Ergebnis 2: " + new Tag05().loeseAufgabe2());
+	}
 
-		eingabe.remove(0);
-		int index = 0;
+	Long berechneSumme(List<Long> werte)
+	{
+		int index = 1;
 
 		for (int i = 0; i < 7; i++)
 		{
@@ -56,7 +50,29 @@ public class Tag05
 				werte.set(j, loeseMapAuf(wandleMapInLongUm(aktuelleMap), werte.get(j)));
 			}
 		}
-		System.out.println("Ergebnis 1: " + Collections.min(werte));
+		return Collections.min(werte);
+	}
+
+	Long loeseAufgabe1()
+	{
+		for (int i = 0; i < samenliste.length; i++)
+		{
+			werte.add(Long.valueOf(samenliste[i]));
+		}
+
+		return berechneSumme(werte);
+	}
+
+	Long loeseAufgabe2()
+	{
+		for (int i = 0; i + 1 < samenliste.length; i++)
+		{
+			for (int j = 0; j < Long.parseLong(samenliste[i + 1]); j++){
+				werte.add(Long.valueOf(samenliste[i] + j));
+			}
+		}
+
+		return berechneSumme(werte);
 	}
 
 	List<List<Long>> wandleMapInLongUm(List<String> stringMap)
