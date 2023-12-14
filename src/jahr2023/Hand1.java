@@ -5,14 +5,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Hand
+public class Hand1
 {
 	private String karten;
 	private int bid;
 	private List<Integer> kartenwerte;
 	private int typ;
 
-	public Hand(String karten, int bid)
+	public Hand1(String karten, int bid)
 	{
 		this.karten = karten;
 		this.kartenwerte = berechneKartenwerte(karten);
