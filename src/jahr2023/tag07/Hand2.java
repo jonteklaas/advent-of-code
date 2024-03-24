@@ -1,4 +1,4 @@
-package jahr2023;
+package jahr2023.tag07;
 
 import java.util.ArrayList;
 import java.util.HashSet;

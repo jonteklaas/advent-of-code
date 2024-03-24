@@ -1,4 +1,4 @@
-package jahr2023;
+package jahr2023.tag07;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -63,8 +63,8 @@ public class Tag07
 		{
 			String[] zeile;
 			zeile = eingabe.get(i).split(" ");
-			Hand2 aktuelleHand = new Hand2(zeile[0], Integer.parseInt(zeile[1]));
-			haende2.get(aktuelleHand.gibTyp()).add(aktuelleHand);
+			//Hand2 aktuelleHand = new Hand2(zeile[0], Integer.parseInt(zeile[1]));
+			//haende2.get(aktuelleHand.gibTyp()).add(aktuelleHand);
 		}
 		return 0;
 	}
