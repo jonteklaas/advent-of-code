@@ -1,4 +1,4 @@
-package jahr2023;
+package jahr2023.tag08;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -15,29 +15,23 @@ public class Tag08
 	{
 		String aktuelleZeile;
 		String schluessel = "";
-		List<String> wert = new ArrayList<>();
+		List<String> wert;
 
 		richtungsanweisungen = scanner.nextLine().replace("L", "0").replace("R", "1");
 		while (scanner.hasNext())
 		{
 			aktuelleZeile = scanner.nextLine().replace(" = ", "").replace("(", "").replace(", ", "").replace(")", "");
-			wert.clear();
+			wert = new ArrayList<>();
 			schluessel = aktuelleZeile.substring(0, 3);
 			wert.add(aktuelleZeile.substring(3, 6));
 			wert.add(aktuelleZeile.substring(6, 9));
-
-			System.out.println(koordinaten);
 			koordinaten.put(schluessel, wert);
-			schluessel = null;
-			System.out.println(koordinaten.size());
-			System.out.println("HALLO"+koordinaten.get("FCG"));
 		}
 	}
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		Tag08 t8 = new Tag08();
-		System.out.println(t8.berechneSumme1());
+		System.out.println(new Tag08().berechneSumme1());
 	}
 
 	private int berechneSumme1()
@@ -48,8 +42,6 @@ public class Tag08
 
 		while (!aktuelleKoordinate.equals("ZZZ"))
 		{
-//			System.out.println(aktuelleKoordinate);
-//			System.out.println(koordinaten.get(aktuelleKoordinate));
 			aktuelleKoordinate = koordinaten.get(aktuelleKoordinate)
 				.get(Integer.parseInt(richtungsanweisungen.charAt(stelleRichtungsanweisungen) + ""));
 			stelleRichtungsanweisungen++;
@@ -58,10 +50,6 @@ public class Tag08
 				stelleRichtungsanweisungen = 0;
 			}
 			anzahlSchritte++;
-			if (anzahlSchritte == 10)
-			{
-				break;
-			}
 		}
 		return anzahlSchritte;
 	}
