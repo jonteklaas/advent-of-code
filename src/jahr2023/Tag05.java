@@ -65,13 +65,26 @@ public class Tag05
 
 	Long loeseAufgabe2()
 	{
+//		Versuch 1 (Problem: j wird zu groß und hat einen Overflow; außerden würde werte zu viele Einträge bekommen)
 		for (int i = 0; i + 1 < samenliste.length; i++)
 		{
 			for (int j = 0; j < Long.parseLong(samenliste[i + 1]); j++){
 				werte.add(Long.valueOf(samenliste[i] + j));
 			}
 		}
+//		return berechneSumme(werte);
 
+//		Versuch 2 (Problem: werte bekommt (wahrscheinlich) zu viele Einträge)
+		long j;
+		for (int i = 0; i < samenliste.length; i += 2)
+		{
+			j = 0;
+			while (j < Long.parseLong(samenliste[i + 1]))
+			{
+				werte.add(Long.valueOf(samenliste[i] + j));
+				j++;
+			}
+		}
 		return berechneSumme(werte);
 	}
 
