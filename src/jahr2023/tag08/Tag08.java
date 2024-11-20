@@ -32,6 +32,7 @@ public class Tag08
 	public static void main(String[] args) throws FileNotFoundException
 	{
 		System.out.println(new Tag08().berechneSumme1());
+		System.out.println(new Tag08().berechneSumme2());
 	}
 
 	private int berechneSumme1()
@@ -50,6 +51,59 @@ public class Tag08
 				stelleRichtungsanweisungen = 0;
 			}
 			anzahlSchritte++;
+		}
+		return anzahlSchritte;
+	}
+
+	private int berechneSumme2()
+	{
+		List<String> aktuelleKoordinatenGerade = koordinaten.keySet().stream().filter(s -> s.endsWith("A")).toList();
+		System.out.println(aktuelleKoordinatenGerade);
+		List<String> aktuelleKoordinatenUngerade = new ArrayList<>();
+		int anzahlGleichzeitigeKnoten = aktuelleKoordinatenGerade.size();
+
+		int anzahlSchritte = 0;
+		int stelleRichtungsanweisungen = 1;
+		boolean gerade = false;
+		boolean fertig = false;
+
+		while (!fertig)
+		{
+			fertig = true;
+			if (gerade)
+			{
+				for (int i = 0; i < anzahlGleichzeitigeKnoten; i++)
+				{
+					aktuelleKoordinatenGerade.add(koordinaten.get(aktuelleKoordinatenUngerade.get(i))
+						.get(Integer.parseInt(richtungsanweisungen.charAt(stelleRichtungsanweisungen) + "")));
+					if (!aktuelleKoordinatenGerade.getLast().endsWith("Z"))
+					{
+						fertig = false;
+					}
+				}
+				aktuelleKoordinatenUngerade = new ArrayList<>();
+			}
+			else
+			{
+				for (int i = 0; i < anzahlGleichzeitigeKnoten; i++)
+				{
+					aktuelleKoordinatenUngerade.add(koordinaten.get(aktuelleKoordinatenGerade.get(i))
+						.get(Integer.parseInt(richtungsanweisungen.charAt(stelleRichtungsanweisungen) + "")));
+					if (!aktuelleKoordinatenUngerade.getLast().endsWith("Z"))
+					{
+						fertig = false;
+					}
+				}
+				aktuelleKoordinatenGerade = new ArrayList<>();
+			}
+			gerade = !gerade;
+			stelleRichtungsanweisungen++;
+			if (stelleRichtungsanweisungen == richtungsanweisungen.length())
+			{
+				stelleRichtungsanweisungen = 0;
+			}
+			anzahlSchritte++;
+			System.out.println(anzahlSchritte);
 		}
 		return anzahlSchritte;
 	}
