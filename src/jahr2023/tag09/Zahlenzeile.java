@@ -27,6 +27,11 @@ public class Zahlenzeile
 		zeile.add(zeile.getLast() + letzteZahlDerUnterzeile);
 	}
 
+	public void berechneErsteZahl(Integer ersteZahlDerUnterzeile)
+	{
+		zeile.add(0, zeile.getFirst() - ersteZahlDerUnterzeile);
+	}
+
 	public boolean enthaeltAndereZahlAls0()
 	{
 		for (int i = 0; i < zeile.size(); i++)
@@ -42,6 +47,11 @@ public class Zahlenzeile
 	public void haengeZahlAn(Integer zahl)
 	{
 		zeile.add(zahl);
+	}
+
+	public void stelleZahlVoran(Integer zahl)
+	{
+		zeile.add(0, zahl);
 	}
 
 	public List<Integer> getZeile()
