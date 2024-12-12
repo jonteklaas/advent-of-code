@@ -39,7 +39,7 @@ public class Tag05
 			}
 			if (istKorrekt)
 			{
-				ergebnis += druckUpdate.get(druckUpdate.size() / 2 + 1);
+				ergebnis += druckUpdate.get(druckUpdate.size() / 2);
 			}
 		}
 		return ergebnis;
@@ -83,8 +83,11 @@ public class Tag05
 						neueListe.add(Integer.parseInt(regeln[1]));
 						druckRegeln.put(Integer.parseInt(regeln[0]), neueListe);
 					}
+					else
+					{
 					druckRegeln.put(Integer.parseInt(regeln[0]),
 						Collections.singletonList(Integer.parseInt(regeln[1])));
+					}
 				}
 				else
 				{
