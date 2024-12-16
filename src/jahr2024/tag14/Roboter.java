@@ -19,9 +19,6 @@ public class Roboter
 
 	public void bewege()
 	{
-		System.out.println(
-			"alte Position: " + positionX + " " + positionY + "; Geschwindigkeit: " + geschwindigkeitX + " "
-				+ geschwindigkeitY);
 		positionX += geschwindigkeitX;
 		positionY += geschwindigkeitY;
 		while (positionX <= 0)
@@ -40,9 +37,6 @@ public class Roboter
 		{
 			positionY %= HOEHE;
 		}
-		System.out.println(
-			"neue Position: " + positionX + " " + positionY + "; Geschwindigkeit: " + geschwindigkeitX + " "
-				+ geschwindigkeitY);
 	}
 
 	//	1|2
@@ -52,25 +46,20 @@ public class Roboter
 	{
 		if (positionX == (BREITE + 1) / 2 || positionY == (HOEHE + 1) / 2)
 		{
-			System.out.println("Quadrant 0 für " + positionX + " " + positionY);
 			return 0;
 		}
 		if (positionX <= BREITE / 2)
 		{
 			if (positionY <= HOEHE / 2)
 			{
-			System.out.println("Quadrant 1 für " + positionX + " " + positionY);
 				return 1;
 			}
-			System.out.println("Quadrant 3 für " + positionX + " " + positionY);
 			return 3;
 		}
 		if (positionY <= HOEHE / 2)
 		{
-			System.out.println("Quadrant 2 für " + positionX + " " + positionY);
 			return 2;
 		}
-			System.out.println("Quadrant 4 für " + positionX + " " + positionY);
 		return 4;
 	}
 }

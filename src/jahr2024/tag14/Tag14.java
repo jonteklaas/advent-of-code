@@ -12,15 +12,15 @@ public class Tag14
 	private Scanner scanner;
 	private List<Roboter> roboter;
 
-	public Tag14(String pfad) throws FileNotFoundException
+	public Tag14() throws FileNotFoundException
 	{
-		scanner = new Scanner(new FileReader(pfad));
+		scanner = new Scanner(new FileReader("src/jahr2024/tag14/input.txt"));
 		roboter = new ArrayList<>();
 	}
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		System.out.println("Aufgabe 1: " + new Tag14("src/main/jahr2024/tag14/input.txt").loeseAufgabe01());
+		System.out.println("Aufgabe 1: " + new Tag14().loeseAufgabe01());
 	}
 
 	private int loeseAufgabe01()
@@ -47,7 +47,6 @@ public class Tag14
 				anzahlRoboterInQuadrant.set(quadrant, anzahlRoboterInQuadrant.get(quadrant) + 1);
 			}
 		}
-		System.out.println(roboter.size());
 		return anzahlRoboterInQuadrant.stream().reduce(1, (a, b) -> a * b);
 	}
 
