@@ -5,6 +5,8 @@ public enum Element
 	ROBOTER('@'),
 	WAND('#'),
 	WARE('O'),
+	WARE_LINKS('['),
+	WARE_RECHTS(']'),
 	LEER('.');
 
 	public final char zeichen;

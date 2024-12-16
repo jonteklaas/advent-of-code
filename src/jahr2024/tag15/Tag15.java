@@ -22,6 +22,7 @@ public class Tag15
 	public static void main(String[] args) throws FileNotFoundException
 	{
 		System.out.println("Aufgabe 1: " + new Tag15("src/jahr2024/tag15/input.txt").loeseAufgabe01());
+		System.out.println("Aufgabe 2: " + new Tag15("src/jahr2024/tag15/input.txt").loeseAufgabe02());
 	}
 
 	private int loeseAufgabe01()
@@ -33,7 +34,27 @@ public class Tag15
 		}
 		int ergebnis = 0;
 		var werteDerKoordinaten =
-			spielfeld.ermittleGpsKoordinatenDerWaren().stream().map(Koordinate::ermittleWertDerKoordinate).toList();
+			spielfeld.ermittleGpsKoordinatenDerWaren(Element.WARE).stream().map(Koordinate::ermittleWertDerKoordinate)
+				.toList();
+		for (int wert : werteDerKoordinaten)
+		{
+			ergebnis += wert;
+		}
+		return ergebnis;
+	}
+
+	private int loeseAufgabe02()
+	{
+		leseInputEin();
+		spielfeld.verdoppleGroeße();
+		for (Richtung richtung : richtungen)
+		{
+			spielfeld.bewegeRoboterInRichtung2(richtung);
+		}
+		int ergebnis = 0;
+		var werteDerKoordinaten =
+			spielfeld.ermittleGpsKoordinatenDerWaren(Element.WARE_LINKS).stream()
+				.map(Koordinate::ermittleWertDerKoordinate).toList();
 		for (int wert : werteDerKoordinaten)
 		{
 			ergebnis += wert;

@@ -18,23 +18,8 @@ public record Koordinate(int zeile, int spalte)
 			};
 	}
 
-	public Koordinate getKoordinateVonOben()
+	public Koordinate multipliziereSpalteMit2()
 	{
-		return new Koordinate(zeile - 1, spalte);
-	}
-
-	public Koordinate getKoordinateVonRechts()
-	{
-		return new Koordinate(zeile, spalte + 1);
-	}
-
-	public Koordinate getKoordinateVonUnten()
-	{
-		return new Koordinate(zeile + 1, spalte);
-	}
-
-	public Koordinate getKoordinateVonLinks()
-	{
-		return new Koordinate(zeile, spalte - 1);
+		return new Koordinate(zeile, spalte * 2);
 	}
 }
