@@ -1,15 +1,10 @@
 package jahr2024.tag04;
 
-import jahr2024.tag03.Tag03;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Tag04
 {

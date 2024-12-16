@@ -1,7 +1,5 @@
 package jahr2024.tag06;
 
-import jahr2024.tag05.Tag05;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;

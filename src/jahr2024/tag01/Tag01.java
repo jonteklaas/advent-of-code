@@ -1,10 +1,8 @@
 package jahr2024.tag01;
 
-import javax.print.DocFlavor;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
-import java.util.stream.IntStream;
 
 public class Tag01
 {
